@@ -59,7 +59,7 @@ based on before using any of the window manager configs.
 | **[Volumeicon](https://www.archlinux.org/packages/community/x86_64/volumeicon/)**          | Volume systray           |
 | **[UbuntuMono Nerd Font](https://aur.archlinux.org/packages/nerd-fonts-ubuntu-mono/)**     | Nerd Font for icons      |
 | **[Material Black](https://github.com/rtlewis88/rtl88-Themes/tree/material-black-COLORS)** | GTK theme and icons      |
-| **[Alacritty](https://wiki.archlinux.org/index.php/Alacritty)**                            | Terminal emulator        |
+| **[Sakura](http://www.pleyades.net/david/projects/sakura)**                                | Terminal emulator        |
 | **[Thunar](https://wiki.archlinux.org/index.php/Thunar)**                                  | Graphical file explorer  |
 | **[Ranger](https://wiki.archlinux.org/index.php/Ranger)**                                  | Terminal based explorer  |
 | **[Neovim](https://wiki.archlinux.org/index.php/Neovim)**                                  | Terminal based editor    |
