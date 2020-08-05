@@ -1,7 +1,5 @@
 # # Dotfiles & Configs
 
-https://www.youtube.com/watch?v=VoJOOx2WLy0&t=255s
-
 Asegúrese de revisar el [keybindings](https://https://github.com/NinShuL89/Dotfiles-Configs#Keybindings)
 y tambien el [software](https://https://github.com/NinShuL89/Dotfiles-Configs#Software) they are
 based on before using any of the window manager configs.
