@@ -29,3 +29,4 @@ img = {}
 img_path = path.join(theme_path, "img")
 for i in listdir(img_path):
     img[i.split(".")[0]] = path.join(img_path, i)
+    

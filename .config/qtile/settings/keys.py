@@ -48,7 +48,7 @@ keys = [Key(key[0], key[1], *key[2:]) for key in [
     ([mod], "m", lazy.spawn("rofi -show run")),
 
     # Window Nav
-    ([mod, "shift"], "m", lazy.spawn("sudo rofi -show")),
+    ([mod, "shift"], "m", lazy.spawn("rofi -show")),
 
     # Browser
     ([mod], "b", lazy.spawn("firefox")),
