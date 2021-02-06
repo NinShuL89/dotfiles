@@ -1,3 +1,9 @@
+# Antonio Sarosi
+# https://youtube.com/c/antoniosarosi
+# https://github.com/antoniosarosi/dotfiles
+
+# Qtile keybindings
+
 from libqtile.config import Key
 from libqtile.command import lazy
 
@@ -26,9 +32,14 @@ keys = [Key(key[0], key[1], *key[2:]) for key in [
 
     # Toggle between different layouts as defined below
     ([mod], "Tab", lazy.next_layout()),
+    ([mod, "shift"], "Tab", lazy.prev_layout()),
 
     # Kill window
     ([mod], "w", lazy.window.kill()),
+
+    # Switch focus of monitors
+    ([mod], "period", lazy.next_screen()),
+    ([mod], "comma", lazy.prev_screen()),
 
     # Restart Qtile
     ([mod, "control"], "r", lazy.restart()),
@@ -36,32 +47,26 @@ keys = [Key(key[0], key[1], *key[2:]) for key in [
     ([mod, "control"], "q", lazy.shutdown()),
     ([mod], "r", lazy.spawncmd()),
 
-    # Switch window focus to other pane(s) of stack
-    ([mod], "space", lazy.layout.next()),
-
-    # Swap panes of split stack
-    ([mod, "shift"], "space", lazy.layout.rotate()),
-
     # ------------ App Configs ------------
 
     # Menu
-    ([mod], "m", lazy.spawn("rofi -show run")),
+    ([mod], "m", lazy.spawn("rofi -show drun")),
 
     # Window Nav
     ([mod, "shift"], "m", lazy.spawn("rofi -show")),
 
     # Browser
-    ([mod], "b", lazy.spawn("firefox")),
+    ([mod], "b", lazy.spawn("chromium")),
 
     # File Explorer
-    ([mod], "e", lazy.spawn("thunar")),
+    ([mod], "e", lazy.spawn("pcmanfm")),
 
     # Terminal
     ([mod], "Return", lazy.spawn("sakura")),
 
     # Redshift
-    ([mod], "r", lazy.spawn("redshift -O 2400")),
-    ([mod, "shift"], "r", lazy.spawn("redshift -x")),
+    ([mod], "r", lazy.spawn("jgmenu")),
+    #([mod, "shift"], "r", lazy.spawn("redshift -x")),
 
     # Screenshot
     ([mod], "s", lazy.spawn("scrot")),
