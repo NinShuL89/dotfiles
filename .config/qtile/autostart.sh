@@ -19,7 +19,7 @@ run cbatticon -u 5 &
 # systray volume
 run volumeicon &
 #Telegram 
-run telegram-desktop &
+#run telegram-desktop &
 # Composer
 run picom &
 # Network
@@ -31,4 +31,6 @@ run nitrogen --restore &
 # Automount Devices
 #run udiskie -t &
 #Wallpaper Changer
-run variety &
+#run variety &
+
+#Copyright © NinShuL89

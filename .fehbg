@@ -1,0 +1,2 @@
+#!/bin/sh
+feh --no-fehbg --bg-fill '/home/ninshu/.local/share/background/116047338_3241283445920407_1142020576574140381_o.jpg' 
