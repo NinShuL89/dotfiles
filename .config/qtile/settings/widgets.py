@@ -1,5 +1,42 @@
-from libqtile import widget
+import subprocess
+
+def arch_updates():
+    try:
+        return subprocess.check_output(
+                "checkupdates | wc -l",
+                shell=True,
+                text=True,
+                ).strip()
+    except Exception:
+        return "0"
+
+#from libqtile import widget
 from settings.theme import colors
+from libqtile.lazy import lazy
+from qtile_extras import widget
+
+# Function New Qtile
+
+def network_status():
+    try:
+        #WIFI
+        wifi = open("/sys/class/net/wlp4s0/operstate").read().strip()
+        if wifi == "up":
+            ssid = subproccess.check_output(
+                    "iwgetid -r",
+                    shell=True,
+                    text=True
+                ).strip()
+            return f"󰖩 {ssid}"
+
+        #Ethernet
+        ethernet = open("/sys/class/net/enp5s0/operstate").read().strip()
+        if ethernet == "up":
+            return "󰈀 "
+        return " Offline"
+    except:
+        return " Offline"
+
 
 # Get the icons at https://www.nerdfonts.com/cheat-sheet (you need a Nerd Font)
 
@@ -20,8 +57,8 @@ icon = lambda fg='text', bg='dark', fontsize=16, text="?": widget.TextBox(
 powerline = lambda fg="light", bg="dark": widget.TextBox(
    **base(fg, bg),
     text="", # Icon: nf-oct-triangle_left
-    fontsize=37,
-    padding=-2
+    fontsize=57,
+    padding=0
 )
 
 workspaces = lambda: [
@@ -61,25 +98,54 @@ primary_widgets = [
 
     icon(bg="color4", text=' '), # Icon: nf-fa-download
     
-    widget.Pacman(**base(bg='color4'), update_interval=1800),
+    widget.CheckUpdates(
+        distro="Arch_checkupdates",
+        display_format="{updates}",
+        no_update_string=0,
+        mouse_callbacks={
+            "Button1":lazy.spawn(
+                "sakura -e bash -lc 'sudo pacman -Syu; echo; read -p'")
+            },
+        **base(bg='color4'), 
+        ),
 
     powerline('color3', 'color4'),
 
-    icon(bg="color3", text=' '),  # Icon: nf-fa-feed
-    
-    widget.Net(**base(bg='color3'), interface='wlp2s0'),
+
+#icon(bg="color3", text=' '),  # Icon: nf-fa-feed
+#-- Icono y Nombre Dinamico 
+        widget.GenPollText(
+        func=network_status,
+        update_interval=5,
+        **base(bg='color3'),
+        ),
+
+#-- Velocidad Dinamica de todas las interfaces activas
+        widget.Net(
+            interface=None,
+            format="{down:.1f}{down_suffix}{up:.1f}{up_suffix}",
+            update_interval=1,
+            **base(bg='color3'),
+        ),
 
     powerline('color2', 'color3'),
 
-    widget.CurrentLayoutIcon(**base(bg='color2'), scale=0.65),
+    widget.CurrentLayout(
+        mode="icon",
+        custom_icon_paths=["~/.config/qtile/settings/layouts"], 
+        **base(bg='color2'), 
+        scale=0.65,
+        padding=2,
+    ),
+#    widget.CurrentLayout(**base(bg='color2'), padding=5),
+     powerline('color1', 'color2'),icon(bg="color1", fontsize=17, text='󰃰'), # Icon: nf-mdi-calendar_clock
 
-    widget.CurrentLayout(**base(bg='color2'), padding=5),
-
-    powerline('color1', 'color2'),
-
-    icon(bg="color1", fontsize=17, text=' '), # Icon: nf-mdi-calendar_clock
-
-    widget.Clock(**base(bg='color1'), format='%d/%m | %H:%M '),
+    widget.Clock(
+        format="%d-%b | %H:%M",
+        update_interval=1,
+        padding=14,
+        **base(bg='color1'),
+        ),
 
     powerline('dark', 'color1'),
 
@@ -94,9 +160,9 @@ secondary_widgets = [
 
     powerline('color1', 'dark'),
 
-    widget.CurrentLayoutIcon(**base(bg='color1'), scale=0.65),
-
-    widget.CurrentLayout(**base(bg='color1'), padding=5),
+     widget.CurrentLayout(**base(bg='color1'), scale=0.65, padding=5),
+#    widget.CurrentLayout(   mode="icon", custom_icon_paths=["~/.config/qtile/settings/layouts"], **base(bg='color1'), scale=0.50   ),
+     widget.CurrentLayout(**base(bg='color1'), padding=5),
 ]
 
 widget_defaults = {
